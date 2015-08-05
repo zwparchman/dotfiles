@@ -8,12 +8,13 @@ if [ ! -d newVim ] ; then
 fi
 cd newVim
 
-if [ ! -f vim-7.4.tar.bz2 ] ; then
-  wget ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2 
-  tar -xf vim-7.4.tar.bz2
-fi
+#if [ ! -f vim-7.4.tar.bz2 ] ; then
+  #wget ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2 
+  #tar -xf vim-7.4.tar.bz2
+#fi
+#[ -d vim ] || mv vim74 vim
 
-[ -d vim ] || mv vim74 vim
+[ -d vim ] || hg clone https://vim.googlecode.com/hg/ vim
 
 cd vim
 
