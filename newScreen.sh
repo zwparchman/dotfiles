@@ -2,7 +2,8 @@
 
 set -o nounset                              # Treat unset variables as an error
 
-git clone git://git.savannah.gnu.org/screen.git && \
+wget https://ftp.gnu.org/gnu/screen/screen-4.3.1.tar.gz && \
+tar -xf screen-4.3.1.tar.gz  && \
 cd screen/src && \
 ./autogen && \
 ./configure --prefix=$HOME && \
