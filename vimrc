@@ -1,4 +1,4 @@
-set nocompatible              " be iMproved, required
+set nocompatible              " be iMproved, required by vundle
 filetype off
 
 " set the runtime path to include Vundle and initialize
@@ -16,7 +16,7 @@ Plugin 'sirtaj/vim-openscad'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 
 call vundle#end()
-filetype plugin indent on    " required
+filetype plugin indent on    " required by vundle
 
 let g:ycm_global_ycm_extra_conf = "~/ycm_extra_conf.py"
 let mapleader=","
