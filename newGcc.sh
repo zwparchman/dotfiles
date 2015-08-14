@@ -34,4 +34,6 @@ cd ..
 mkdir -p gcc_build
 cd gcc_build
 ../gcc-5.2.0/configure --with-gmp=$HOME --prefix=$HOME --enable-language=c,c++ --disable-multilib
+make
+make install
 cd ..
