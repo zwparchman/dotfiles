@@ -124,4 +124,5 @@ export LD_LIBARY_PATH='/usr/local/lib64':$LD_LIBARY_PATH
 
 set -o vi
 PATH=$PATH:$HOME/bin
+export EDITOR=vim
 alias E=". ~/bin/E"
