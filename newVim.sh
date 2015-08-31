@@ -27,5 +27,6 @@ cd vim
   --enable-cscope \
   --prefix=$HOME
 
-make
-echo "go to" `pwd` "and type make install to finish installing vim to " $HOME
+make -j 10
+make install
+#echo "go to" `pwd` "and type make install to finish installing vim to " $HOME
