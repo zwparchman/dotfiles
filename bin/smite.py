@@ -4,9 +4,23 @@ import sh
 import re
 import math
 import sys
+import argparse
 
-ps = sh.ps
-ps = ps.bake(["-U", "zack", "-o", "pid,%cpu,%mem,command"])
+parser = argparse.ArgumentParser(description = "kill a process after searching for it by name",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser.add_argument("-s","--signal", default=15, metavar="S", type=int,
+        help="Signal to send to the selected process.")
+parser.add_argument("search_string", nargs="+", action='append', help="The string[s] to search for. Case insensitive")
+
+args = parser.parse_args()
+
+find_list = args.search_string[0]
+for s in find_list:
+    s = s.lower()
+
+signal = args.signal
+
+ps = sh.ps.bake(["-U", "zack", "-o", "pid,%cpu,%mem,command"])
 
 lines = str(ps()).lower().splitlines()
 head = lines[0]
@@ -17,11 +31,11 @@ if len(lines) > 1 :
 
 print head
 
-to_find = sys.argv[1].lower()
-r = re.compile(to_find)
 
-#preform the search
-out = list(filter( lambda x : r.search(x), out))
+#remove all elements not containing an element from the find_list from the output set
+for f in find_list:
+    r = re.compile(f)
+    out = list(filter( lambda x : r.search(x), out))
 
 width = int(math.ceil(math.log10(len(out))))+1
 
@@ -40,6 +54,6 @@ if num < 0 or num >= len( out ):
 
 pid_to_kill = out[num].split()[0]
 
-print pid_to_kill
+kill=sh.kill.bake(["-"+str(signal), str(pid_to_kill)])
+kill()
 
-sh.kill.bake([str(pid_to_kill)])()
