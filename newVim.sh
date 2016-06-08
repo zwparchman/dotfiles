@@ -23,10 +23,7 @@ cd vim
 
 ./configure --with-features=huge \
   --enable-multibyte \
-  --enable-rubyinterp \
   --enable-pythoninterp \
-  --enable-perlinterp \
-  --enable-luainterp \
   --enable-cscope \
   --prefix=$HOME
 
