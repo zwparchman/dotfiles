@@ -1,0 +1,7 @@
+mousetrack on
+mouseclick = on
+
+#shift-tab ^[[Z 
+#^[[1:2A shift up-arrow
+#^[[1:2C shift right-arrow
+bindkey ^[[Z focus 
