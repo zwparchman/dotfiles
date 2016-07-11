@@ -1,4 +1,4 @@
-set nocompatible              " be iMproved, required by vundle
+set nocompatible              " be iMproved, required
 filetype off
 
 " set the runtime path to include Vundle and initialize
@@ -14,9 +14,13 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'WolfgangMehner/vim-plugins'
 Plugin 'sirtaj/vim-openscad'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
+Plugin 'https://github.com/andreimaxim/vim-io'
+Plugin 'majutsushi/tagbar'
+Plugin 'git@github.com:jeffkreeftmeijer/vim-numbertoggle.git'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
-filetype plugin indent on    " required by vundle
+filetype plugin indent on    " required
 
 let g:ycm_global_ycm_extra_conf = "~/ycm_extra_conf.py"
 let mapleader=","
@@ -34,8 +38,9 @@ map <leader>w  :w<cr>
 map <leader>x  :x<cr>
 map <leader>q  :q<cr>
 map <leader>t  :tabe<space>
-map <F1> :noh<cr>
+map <F1> :nohlsearch<cr>
 map <F2> :NERDTreeToggle<cr>
+map <F3> :TagbarToggle<cr>
 
 colorscheme desert
 set mouse=a
@@ -45,9 +50,21 @@ set hlsearch
 set wildmenu
 set showmatch
 
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+
+set relativenumber
+"use relative numbering only when vim is in focus
+au FocusLost * :set number
+au FocusGained * :set relativenumber
+
+"use absolue numbering in insert mode
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
+
+set tabstop=4
+set shiftwidth=4
+set colorcolumn=80
+set cino=:0,(0
 
 set backspace=indent,eol,start
 
