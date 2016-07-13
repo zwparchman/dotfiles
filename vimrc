@@ -10,13 +10,21 @@ Plugin 'gmarik/Vundle.vim'
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 " to install plugins run this from bash: vim +PluginInstall +qall
+
+" various language auto complete
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'WolfgangMehner/vim-plugins'
+" open scad coloring
 Plugin 'sirtaj/vim-openscad'
+" file system viewer
 Plugin 'https://github.com/scrooloose/nerdtree.git'
+" syntax hilighting for *.io files
 Plugin 'https://github.com/andreimaxim/vim-io'
+" function / class viewer, builds up db of current file
 Plugin 'majutsushi/tagbar'
+" change from absolute to relative numbers when it is reasonable
 Plugin 'git@github.com:jeffkreeftmeijer/vim-numbertoggle.git'
+" change surrounding [] () {} of text
 Plugin 'tpope/vim-surround'
 
 call vundle#end()
