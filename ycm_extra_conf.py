@@ -14,7 +14,8 @@ flags = [
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
-'-DNDEBUG',
+'-I/home/zack/mysrc/zacklib',
+#'-DNDEBUG',
 # ...and the same thing goes for the magic -x option which specifies the
 # language that the files to be compiled are written in. This is mostly
 # relevant for c++ headers.
@@ -44,6 +45,20 @@ flags = [
 '-isystem',
 './tests/gmock/include',
 ]
+
+def add_include_dir(s):
+    global flags
+    flags.append("-I")
+    flags.append(s)
+
+def add_system_include(s):
+    global flags
+    flags.append("-isystem")
+    flags.append(s)
+
+add_system_include("/home/zack/src/ulfm/local/include")
+
+
 
 
 # Set this to the absolute path to the folder (NOT the file!) containing the

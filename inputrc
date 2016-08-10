@@ -1,2 +1,2 @@
-TAB: menu-complete
+#TAB: menu-complete
 set completion-ignore-case
