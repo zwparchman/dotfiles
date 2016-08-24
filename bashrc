@@ -139,7 +139,7 @@ ln_dir_contents(){
         return 1
     fi
     ls /home/zack/Desktop/snptools  | while read i ; do 
-        ln -s "/home/zack/Desktop/snptools/${i}" . 
+        ln -s "$1/${i}" .
     done
 }
 
