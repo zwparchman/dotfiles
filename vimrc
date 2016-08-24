@@ -18,6 +18,8 @@ Plugin 'WolfgangMehner/vim-plugins'
 Plugin 'sirtaj/vim-openscad'
 " file system viewer
 Plugin 'https://github.com/scrooloose/nerdtree.git'
+" make nerdtree window consistant across all tabs
+Bundle 'jistr/vim-nerdtree-tabs'
 " syntax hilighting for *.io files
 Plugin 'https://github.com/andreimaxim/vim-io'
 " function / class viewer, builds up db of current file
@@ -26,6 +28,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'git@github.com:jeffkreeftmeijer/vim-numbertoggle.git'
 " change surrounding [] () {} of text
 Plugin 'tpope/vim-surround'
+
 
 call vundle#end()
 filetype plugin indent on    " required
@@ -47,8 +50,12 @@ map <leader>x  :x<cr>
 map <leader>q  :q<cr>
 map <leader>t  :tabe<space>
 map <F1> :nohlsearch<cr>
-map <F2> :NERDTreeToggle<cr>
+map <F2> :NERDTreeTabsToggle<cr>
 map <F3> :TagbarToggle<cr>
+
+
+"auto close nerdtree window after opening a file
+let NERDTreeQuitOnOpen=1
 
 colorscheme desert
 set mouse=a
@@ -99,6 +106,16 @@ set viminfo^=%
 "use $(leader)b or $(leader)B to insert breakpoints in python code --zack
 au FileType python map <silent> <leader>b oimport pdb; pdb.set_trace()<esc>
 au FileType python map <silent> <leader>B Oimport pdb; pdb.set_trace()<esc>
+
+
+"python PEP8 style (without 80 column limit)
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
