@@ -8,3 +8,4 @@ cp -i ./vimrc ~/.vimrc
 cp -i ./screenrc ~/.screenrc
 cp -i ./ycm_extra_conf.py ~/.ycm_extra_conf.py
 cp -i bin/smite.py ~/bin/smite
+cp -i ./tmux.conf ~/.tmux.conf
