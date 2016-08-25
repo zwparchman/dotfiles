@@ -116,13 +116,46 @@ if ! shopt -oq posix; then
   fi
 fi
 
+add_to_include(){
+    export C_INCLUDE_PATH=$C_INCLUDE_PATH:$1
+}
+
+add_to_lib(){
+    export LD_LIBARY_PATH=$LD_LIBARY_PATH:$1
+}
+
+
+add_to_ld(){
+    export LIBARY_PATH=$LIBARY_PATH:$1
+}
+
+add_to_path(){
+    export PATH=$PATH:$1
+}
+
+ln_dir_contents(){
+    if [ -z "$1" ] ; then
+        echo "requires a path to copy the contents from"
+        return 1
+    fi
+    ls /home/zack/Desktop/snptools  | while read i ; do 
+        ln -s "$1/${i}" .
+    done
+}
+
 export ICAROOT="/home/zack/.ICAClient/linuxx86"
 export GOPATH="/home/zack/src/gocode"
 export WORK='/home/zack/src/work/mpift-tests.apps-npb/src/NPB3.3/NPB3.3-MPI'
 export PAPER='/home/zack/src/work/mpift-tests.apps-npb/doc/paper'
-export LD_LIBARY_PATH='/usr/local/lib64':$LD_LIBARY_PATH
+add_to_lib '/usr/local/lib64'
+
+#less options:
+# -r allow escape sequences (color) through unmodified
+# -F quit if less than one screen was displayed
+export LESS="-r -c"
 
 set -o vi
 PATH=$PATH:$HOME/bin
 export EDITOR=vim
 alias E=". ~/bin/E"
+alias rebash=". ~/.bashrc"

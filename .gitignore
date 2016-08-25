@@ -1,0 +1,4 @@
+\.*
+tmux/
+new_vim/
+build_gcc/
