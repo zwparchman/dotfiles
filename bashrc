@@ -138,7 +138,7 @@ ln_dir_contents(){
         echo "requires a path to copy the contents from"
         return 1
     fi
-    ls /home/zack/Desktop/snptools  | while read i ; do 
+    ls $1  | while read i ; do
         ln -s "$1/${i}" .
     done
 }
@@ -152,7 +152,7 @@ add_to_lib '/usr/local/lib64'
 #less options:
 # -r allow escape sequences (color) through unmodified
 # -F quit if less than one screen was displayed
-export LESS="-r -c"
+export LESS="-R -c"
 
 set -o vi
 PATH=$PATH:$HOME/bin
