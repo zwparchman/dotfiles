@@ -129,4 +129,6 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
+let @c = "\"ayW:tabe /tmp/editGo\"apokkztj!!find . -type f | egrep '^\./[^.]{1}.*\.[ch]$' | xargs ack a:w"
+
 

@@ -146,6 +146,7 @@ ln_dir_contents(){
 export ICAROOT="/home/zack/.ICAClient/linuxx86"
 export GOPATH="/home/zack/src/gocode"
 export WORK='/home/zack/src/work/mpift-tests.apps-npb/src/NPB3.3/NPB3.3-MPI'
+export SHARP='$HOME/src/sharp'
 export PAPER='/home/zack/src/work/mpift-tests.apps-npb/doc/paper'
 add_to_lib '/usr/local/lib64'
 
