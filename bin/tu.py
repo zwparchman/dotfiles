@@ -36,7 +36,6 @@ def select_action():
         #get arguments
 
 
-
 class Tmux_Error(Exception):
     pass
 
@@ -69,19 +68,47 @@ def quit():
     """Quit the program"""
     sys.exit()
 
+def choose_session():
+    """Propt the user for a session by name. This defaults to the current one 
+    if '-' is input"""
+
+    while True:
+        sessions = get_sessions()
+        session_list = sessions.splitlines()
+        for i,line in enumerate(session_list):
+            where = line.find(":")
+            session_list[i] = line[:where]
+
+        print(sessions)
+        print("Type session name or '-' for this one")
+        choice = input("  > ")
+
+        if choice in session_list:
+            return choice
+
+        if choice == '-':
+            if bool(os.getenv("TMUX")):
+                return tmux_do("display-message -p '#S'")
+            print ("You are currently not in a tmux session, try again")
+            continue
+
+
+        print("Invalid session name, try again")
+
 def move_window():
     """Move a window from one session to another"""
     out = get_sessions()
-    print(out)
 
-    source = input("To session: ")
-    target = input("From session: ")
+    print ("Move from ...")
+    target = choose_session()
+    print(" ... to ...")
+    source = choose_session()
 
     win_list = get_windows(target)
     print(win_list)
     win = input("Target Window: ")
 
-    tmux_do("movew -t {} -s {}:{}".format(source,target,win))
+    tmux_do("movew -t {} -s {}:{}".format(target,source,win))
 
 actions=[
         Action(R"^(h|help)$", print_help),
@@ -92,7 +119,13 @@ actions=[
     
 
 def main():
-    select_action()
+    try:
+        select_action()
+    except KeyboardInterrupt:
+        pass
+    except EOFError:
+        pass
+    return 0
 
 
 if __name__ == "__main__":
