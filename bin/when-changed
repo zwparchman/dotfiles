@@ -1,1 +1,4 @@
-/home/zack/bin/when-changed
+#!/usr/bin/env python
+
+from whenchanged.whenchanged import main
+main()
