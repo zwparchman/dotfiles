@@ -7,17 +7,20 @@ set -e #fail on first error
 
 
 start=0
-if [ -n $1 ] ; then
+if [ -n "${1+'set'}" ] ; then
     start=$1
 fi
 
 MPFR_VERSION=3.1.4
+GCC_VERSION=6.2.0
+GMP_VERSION=6.0.0.0a
+
 while true ; do
   case $start in
       0)
           echo "gmp"
-          [ -f gmp-6.0.0a.tar.bz2 ] || wget https://gmplib.org/download/gmp/gmp-6.0.0a.tar.bz2
-          [ -d gmp-6.0.0 ] || tar -xf gmp-6.0.0a.tar.bz2
+          [ -f gmp-${GMP_VERSION}.tar.bz2 ] || wget https://gmplib.org/download/gmp/gmp-${GMP_VERSION}.tar.bz2
+          [ -d gmp-${GMP_VERSION}r -xf gmp-${GMP_VERSION}.tar.bz2
           cd gmp-6.0.0
           ./configure --prefix=$HOME
           make -j 20
@@ -50,17 +53,18 @@ while true ; do
 
        3)
            echo "gcc"
-           [ -f  gcc-5.2.0.tar.gz ] ||
-                   wget http://www.netgull.com/gcc/releases/gcc-5.2.0/gcc-5.2.0.tar.gz
-           [ -d gcc-5.2.0 ] || tar -xf gcc-5.2.0
+           [ -f  gcc-${GCC_VERSION}.tar.gz ] ||
+                   wget ftp://ftp.gnu.org/gnu/gcc/gcc-${GCC_VERSION}/gcc-${GCC_VERSION}.tar.gz
+           [ -d gcc-${GCC_VERSION} ] || tar -xf gcc-${GCC_VERSION}.tar.gz
            [ -d gcc_build ] && rm -rf gcc_build
            mkdir -p gcc_build
            cd gcc_build
-           ../gcc-5.2.0/configure \
+           ../gcc-${GCC_VERSION}/configure \
                --with-gmp=$HOME \
                --prefix=$HOME \
                --enable-language=c,c++ \
-               --disable-multilib
+               --disable-multilib\
+               --enable-static
            make -j 20
            make install
            cd ..
