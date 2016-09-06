@@ -121,12 +121,12 @@ add_to_include(){
 }
 
 add_to_lib(){
-    export LD_LIBARY_PATH=$LD_LIBARY_PATH:$1
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$1
 }
 
 
 add_to_ld(){
-    export LIBARY_PATH=$LIBARY_PATH:$1
+    export LIBRARY_PATH=$LIBRARY_PATH:$1
 }
 
 add_to_path(){
@@ -149,6 +149,21 @@ export WORK='/home/zack/src/work/mpift-tests.apps-npb/src/NPB3.3/NPB3.3-MPI'
 export SHARP='$HOME/src/sharp'
 export PAPER='/home/zack/src/work/mpift-tests.apps-npb/doc/paper'
 add_to_lib '/usr/local/lib64'
+
+#home
+add_to_lib "$HOME/lib64"
+add_to_ld  "$HOME/lib64"
+add_to_lib "$HOME/lib"
+add_to_ld  "$HOME/lib"
+
+
+#cuda
+add_to_path "/usr/local/cuda/bin"
+add_to_lib "/usr/local/cuda/lib64"
+add_to_lib "/usr/local/cuda/lib"
+add_to_ld "/usr/local/cuda/lib"
+add_to_ld "/usr/local/cuda/lib64"
+add_to_include "/usr/local/cuda/include"
 
 #less options:
 # -r allow escape sequences (color) through unmodified
