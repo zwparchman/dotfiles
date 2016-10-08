@@ -21,7 +21,7 @@ fi
 
 cd $dir_name
 
-if (./configure --prefix=$HOME && make && make install) ; then
+if (./configure --prefix=$PREFIX && make && make install) ; then
     exit 0
 fi
 

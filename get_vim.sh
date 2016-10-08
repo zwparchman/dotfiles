@@ -3,6 +3,10 @@
 
 set -o nounset                              # Treat unset variables as an error
 
+if [ -z "$PREFIX" ] ; then
+    echo "PREFIX required"
+fi
+
 if [ ! -d newVim ] ; then
   mkdir newVim
 fi
@@ -25,7 +29,7 @@ cd vim
   --enable-multibyte \
   --enable-pythoninterp \
   --enable-cscope \
-  --prefix=$HOME
+  --prefix=$PREFIX
 
 make -j 10
 make install

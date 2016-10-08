@@ -4,6 +4,11 @@
 set -o nounset                              # Treat unset variables as an error
 set -e # fail on first non 0 exit status
 
+if [ -z "$PREFIX"]; then
+    echo prefix required;
+    exit 1;
+fi
+
 program=pkg-config
 goal_version=0.29.1
 dir_name="$program-${goal_version}"
@@ -30,7 +35,7 @@ fi
 #######################################33
 #build and install it
 cd $dir_name
-if (./configure --prefix=$HOME && make && make install) ; then
+if (./configure --prefix=$PREFIX && make && make install) ; then
     exit 0
 fi
 

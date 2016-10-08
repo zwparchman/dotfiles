@@ -2,6 +2,13 @@
 
 set -o nounset                              # Treat unset variables as an error
 
+if [ -z "$PREFIX"]; then
+    echo prefix required;
+    exit 1;
+fi
+
+
+
 if [ -n "`which m4`" ] ; then
     ver=`m4 --version | head -n 1 | cut -d " " -f 4`
     ver=`python -c "if \"$ver\" == \"1.4.17\" : print(1)"`
@@ -21,7 +28,7 @@ fi
 
 cd $dir_name
 
-if (./configure --prefix=$HOME && make && make install) ; then
+if (./configure --prefix=$PREFIX && make && make install) ; then
     exit 0
 fi
 
