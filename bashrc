@@ -117,20 +117,26 @@ if ! shopt -oq posix; then
 fi
 
 add_to_include(){
-    export C_INCLUDE_PATH=$C_INCLUDE_PATH:$1
+    export C_INCLUDE_PATH=$1:$C_INCLUDE_PATH
+    export CPATH=$C_INCLUDE_PATH
 }
 
 add_to_lib(){
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$1
+    export LD_LIBRARY_PATH=$1:$LD_LIBRARY_PATH
 }
 
 
 add_to_ld(){
-    export LIBRARY_PATH=$LIBRARY_PATH:$1
+    export LIBRARY_PATH=$1:$LIBRARY_PATH
 }
 
 add_to_path(){
-    export PATH=$PATH:$1
+    export PATH=$1:$PATH
+}
+
+add_to_both_lib(){
+    add_to_lib $1
+    add_to_ld $1
 }
 
 ln_dir_contents(){
@@ -143,30 +149,27 @@ ln_dir_contents(){
     done
 }
 
+add_prefix(){
+    add_to_include $1/include
+    add_to_path $1/bin
+    add_to_lib $1/lib
+    add_to_ld  $1/lib
+    export MANPATH=$1/share/man:$MANPATH
+    export PKG_CONFIG_PATH=${1}/lib/pkgconfig:$PKG_CONFIG_PATH
+}
+
 export ICAROOT="/home/zack/.ICAClient/linuxx86"
 export GOPATH="/home/zack/src/gocode"
 export WORK='/home/zack/src/work/mpift-tests.apps-npb/src/NPB3.3/NPB3.3-MPI'
 export SHARP='$HOME/src/sharp'
 export PAPER='/home/zack/src/work/mpift-tests.apps-npb/doc/paper'
-add_to_lib '/usr/local/lib64'
-
-#home
-add_to_lib "$HOME/lib64"
-add_to_ld  "$HOME/lib64"
+add_to_lib "/usr/local/lib64"
 add_to_lib "$HOME/lib"
-add_to_ld  "$HOME/lib"
 
-
-#cuda
-add_to_path "/usr/local/cuda/bin"
-add_to_lib "/usr/local/cuda/lib64"
-add_to_lib "/usr/local/cuda/lib"
-add_to_ld "/usr/local/cuda/lib"
-add_to_ld "/usr/local/cuda/lib64"
-add_to_include "/usr/local/cuda/include"
+export PHOME='/ccs/proj/csc221/zack'
 
 #less options:
-# -r allow escape sequences (color) through unmodified
+# -R allow ansi escape sequences (color) through unmodified
 # -F quit if less than one screen was displayed
 export LESS="-R -c"
 
