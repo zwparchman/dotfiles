@@ -126,6 +126,7 @@ mkcd(){
 
 add_to_include(){
     export C_INCLUDE_PATH=$1:$C_INCLUDE_PATH
+    export CPATH=$C_INCLUDE_PATH
 }
 
 add_to_lib(){
@@ -139,6 +140,11 @@ add_to_ld(){
 
 add_to_path(){
     export PATH=$1:$PATH
+}
+
+add_to_both_lib(){
+    add_to_lib $1
+    add_to_ld $1
 }
 
 ln_dir_contents(){
@@ -156,22 +162,10 @@ export GOPATH="/home/zack/src/gocode"
 export WORK='/home/zack/src/work/mpift-tests.apps-npb/src/NPB3.3/NPB3.3-MPI'
 export SHARP='$HOME/src/sharp'
 export PAPER='/home/zack/src/work/mpift-tests.apps-npb/doc/paper'
-add_to_lib '/usr/local/lib64'
-
-#home
-add_to_lib "$HOME/lib64"
-add_to_ld  "$HOME/lib64"
+add_to_lib "/usr/local/lib64"
 add_to_lib "$HOME/lib"
-add_to_ld  "$HOME/lib"
 
-
-#cuda
-add_to_path "/usr/local/cuda/bin"
-add_to_lib "/usr/local/cuda/lib64"
-add_to_lib "/usr/local/cuda/lib"
-add_to_ld "/usr/local/cuda/lib"
-add_to_ld "/usr/local/cuda/lib64"
-add_to_include "/usr/local/cuda/include"
+export PHOME='/ccs/proj/csc221/zack'
 
 
 add_prefix(){
@@ -198,7 +192,7 @@ add_built libevent-2.0.22
 add_built libtool_2_4_2
 
 #less options:
-# -r allow escape sequences (color) through unmodified
+# -R allow ansi escape sequences (color) through unmodified
 # -F quit if less than one screen was displayed
 export LESS="-R -c"
 
