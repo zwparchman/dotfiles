@@ -156,6 +156,7 @@ add_prefix(){
     add_to_ld  $1/lib
     export MANPATH=$1/share/man:$MANPATH
     export PKG_CONFIG_PATH=${1}/lib/pkgconfig:$PKG_CONFIG_PATH
+    export ACLOCAL_PATH=${1}/share/aclocal:$ACLOCAL_PATH
 }
 
 export ICAROOT="/home/zack/.ICAClient/linuxx86"
