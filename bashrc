@@ -116,21 +116,29 @@ if ! shopt -oq posix; then
   fi
 fi
 
+mkcd(){
+    if [ -z "$1" ] ; then
+        echo "Requires an argument"
+    fi
+    mkdir $1
+    cd $1
+}
+
 add_to_include(){
-    export C_INCLUDE_PATH=$C_INCLUDE_PATH:$1
+    export C_INCLUDE_PATH=$1:$C_INCLUDE_PATH
 }
 
 add_to_lib(){
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$1
+    export LD_LIBRARY_PATH=$1:$LD_LIBRARY_PATH
 }
 
 
 add_to_ld(){
-    export LIBRARY_PATH=$LIBRARY_PATH:$1
+    export LIBRARY_PATH=$1:$LIBRARY_PATH
 }
 
 add_to_path(){
-    export PATH=$PATH:$1
+    export PATH=$1:$PATH
 }
 
 ln_dir_contents(){
@@ -165,6 +173,30 @@ add_to_ld "/usr/local/cuda/lib"
 add_to_ld "/usr/local/cuda/lib64"
 add_to_include "/usr/local/cuda/include"
 
+
+add_prefix(){
+    add_to_path $1/bin
+    add_to_lib $1/lib
+    add_to_lib $1/lib64
+    add_to_ld $1/lib
+    add_to_ld $1/lib64
+    add_to_include $1/include
+    export MANPATH=$1/share/man:$MANPATH
+    export PKG_CONFIG_PATH=$1/lib/pkgconfig:$PKG_CONFIG_PATH
+}
+
+add_built(){
+    add_prefix $HOME/built/${1}
+}
+
+if [ -z "$MANPATH" ] ; then
+    export MANPATH=`manpath`
+fi
+
+add_built qthreads
+add_built libevent-2.0.22
+add_built libtool_2_4_2
+
 #less options:
 # -r allow escape sequences (color) through unmodified
 # -F quit if less than one screen was displayed
@@ -175,3 +207,5 @@ PATH=$PATH:$HOME/bin
 export EDITOR=vim
 alias E=". ~/bin/E"
 alias rebash=". ~/.bashrc"
+
+export PYTHONPATH=/home/zack/built/cog/lib/python2.7/site-packages/
