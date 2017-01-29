@@ -190,6 +190,7 @@ fi
 add_built qthreads
 add_built libevent-2.0.22
 add_built libtool_2_4_2
+add_built boost_1_63_0
 
 #less options:
 # -R allow ansi escape sequences (color) through unmodified
