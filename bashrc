@@ -169,23 +169,20 @@ export PHOME='/ccs/proj/csc221/zack'
 
 
 add_prefix(){
+    add_to_include $1/include
     add_to_path $1/bin
     add_to_lib $1/lib
     add_to_lib $1/lib64
-    add_to_ld $1/lib
+    add_to_ld  $1/lib
     add_to_ld $1/lib64
-    add_to_include $1/include
     export MANPATH=$1/share/man:$MANPATH
-    export PKG_CONFIG_PATH=$1/lib/pkgconfig:$PKG_CONFIG_PATH
+    export PKG_CONFIG_PATH=${1}/lib/pkgconfig:$PKG_CONFIG_PATH
+    export ACLOCAL_PATH=${1}/share/aclocal:$ACLOCAL_PATH
 }
 
 add_built(){
     add_prefix $HOME/built/${1}
 }
-
-if [ -z "$MANPATH" ] ; then
-    export MANPATH=`manpath`
-fi
 
 add_built qthreads
 add_built libevent-2.0.22
