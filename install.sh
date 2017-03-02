@@ -2,10 +2,30 @@
 
 set -o nounset                              # Treat unset variables as an error
 
-cp -i ./bashrc ~/.bashrc
-cp -i ./inputrc ~/.inputrc
-cp -i ./vimrc ~/.vimrc
-cp -i ./screenrc ~/.screenrc
-cp -i ./ycm_extra_conf.py ~/.ycm_extra_conf.py
-cp -i bin/smite.py ~/bin/smite
-cp -i ./tmux.conf ~/.tmux.conf
+install_rc(){
+    if [ -f ~/$1 ] ; then
+        target=$PWD/$2
+        pushd $HOME
+        ln -i $target $1
+        popd
+    fi
+}
+
+install_bin(){
+    if [ -f $HOME/bin/$1 ] ; then
+        target=$PWD/$1
+        pushd $HOME/bin
+        ln -i $target .
+        popd
+    fi
+}
+
+install_rc .bashrc bashrc
+install_rc .inputrc inputrc
+
+install_rc vimrc .vimrc
+install_rc screenrc .screenrc
+install_rc ycm_extra_conf .ycm_extra_conf
+install_rc tmux.conf .tmux.conf
+
+install_bin smite.py
