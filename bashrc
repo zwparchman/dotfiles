@@ -116,6 +116,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
+mkcd(){
+    if [ -z "$1" ] ; then
+        echo "Requires an argument"
+    fi
+    mkdir $1
+    cd $1
+}
+
 add_to_include(){
     export C_INCLUDE_PATH=$1:$C_INCLUDE_PATH
     export CPATH=$C_INCLUDE_PATH
@@ -149,16 +157,6 @@ ln_dir_contents(){
     done
 }
 
-add_prefix(){
-    add_to_include $1/include
-    add_to_path $1/bin
-    add_to_lib $1/lib
-    add_to_ld  $1/lib
-    export MANPATH=$1/share/man:$MANPATH
-    export PKG_CONFIG_PATH=${1}/lib/pkgconfig:$PKG_CONFIG_PATH
-    export ACLOCAL_PATH=${1}/share/aclocal:$ACLOCAL_PATH
-}
-
 export ICAROOT="/home/zack/.ICAClient/linuxx86"
 export GOPATH="/home/zack/src/gocode"
 export WORK='/home/zack/src/work/mpift-tests.apps-npb/src/NPB3.3/NPB3.3-MPI'
@@ -168,6 +166,28 @@ add_to_lib "/usr/local/lib64"
 add_to_lib "$HOME/lib"
 
 export PHOME='/ccs/proj/csc221/zack'
+
+
+add_prefix(){
+    add_to_include $1/include
+    add_to_path $1/bin
+    add_to_lib $1/lib
+    add_to_lib $1/lib64
+    add_to_ld  $1/lib
+    add_to_ld $1/lib64
+    export MANPATH=$1/share/man:$MANPATH
+    export PKG_CONFIG_PATH=${1}/lib/pkgconfig:$PKG_CONFIG_PATH
+    export ACLOCAL_PATH=${1}/share/aclocal:$ACLOCAL_PATH
+}
+
+add_built(){
+    add_prefix $HOME/built/${1}
+}
+
+add_built qthreads
+add_built libevent-2.0.22
+add_built libtool_2_4_2
+add_built boost_1_63_0
 
 #less options:
 # -R allow ansi escape sequences (color) through unmodified
@@ -179,3 +199,5 @@ PATH=$PATH:$HOME/bin
 export EDITOR=vim
 alias E=". ~/bin/E"
 alias rebash=". ~/.bashrc"
+
+export PYTHONPATH=/home/zack/built/cog/lib/python2.7/site-packages/
