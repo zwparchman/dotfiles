@@ -1,0 +1,17 @@
+#!/bin/bash - 
+#download compile and install python3
+
+set -o nounset                              # Treat unset variables as an error
+
+if [ -z "$PREFIX" ] ; then
+    echo "PREFIX required"
+fi
+
+[ -d Python-3.6.1 ] || wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz
+tar xf Python-3.6.1.tar.xz
+
+cd Python-3.6.1
+
+./configure --prefix=$PREFIX --enable-shared --enable-optimizations --enable-profiling --enable-loadable-sqlite-extensions
+make
+make install
