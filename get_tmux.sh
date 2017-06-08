@@ -2,14 +2,16 @@
 
 set -o nounset                              # Treat unset variables as an error
 
-if [ ! -d tmux ] ; then
-    git clone git@github.com:tmux/tmux.git
-fi
+PRE=$PREFIX
+
+[ -d tmux ] || git clone ssh://git@github.com/tmux/tmux.git
 
 cd tmux
-./autogen
+./autogen.sh
 
 #./configure 
-./configure --enable-static
+#./configure --enable-static
+./configure --prefix=$PRE
 
 make -j20
+make install
