@@ -200,4 +200,4 @@ export EDITOR=vim
 alias E=". ~/bin/E"
 alias rebash=". ~/.bashrc"
 
-export PYTHONPATH=/home/zack/built/cog/lib/python2.7/site-packages/
+. ~/environ
