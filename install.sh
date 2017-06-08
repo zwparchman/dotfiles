@@ -29,3 +29,7 @@ install_rc ycm_extra_conf .ycm_extra_conf
 install_rc tmux.conf .tmux.conf
 
 install_bin smite.py
+
+HERE=$PWD
+(cd && ln -s "$HERE"/environ .)
+
