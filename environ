@@ -1,1 +1,11 @@
-../environ
+case `hostname` in
+medic)
+    add_built vim
+    add_built ack
+    add_built python3.6
+    add_built llvm-4.0.0
+    add_built m4
+    add_built automake
+    add_built autoconf
+    ;;
+esac
