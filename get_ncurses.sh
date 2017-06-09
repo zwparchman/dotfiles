@@ -5,10 +5,13 @@ set -o nounset                              # Treat unset variables as an error
 PRE=$PREFIX
 
 
-[ -f ncurses-6.0.tar.gz ] || wget http://ftp.gnu.org/gnu/ncurses/ncurses-6.0.tar.gz
-[ -d ncurses-6.0 ] || tar -xf ncurses-6.0.tar.gz
+thing=ncurses-6.0
+[ -f $thing}.tar.gz ] || wget http://ftp.gnu.org/gnu/ncurses/${thing}.tar.gz
+[ -d ${thing} ] || tar -xf ${thing}.tar.gz
 
-cd ncurses-6.0
+export CPPFLAGS="-P"
+
+cd ${thing}
 ./autogen.sh
 
 ./configure --prefix=$PRE
