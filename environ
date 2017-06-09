@@ -8,4 +8,9 @@ medic)
     add_built automake
     add_built autoconf
     ;;
+gpu1)
+  add_built boost_1_64_0
+  add_built tmux
+  add_built libevent
+  add_built ncurses
 esac
