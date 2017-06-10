@@ -13,4 +13,5 @@ gpu1)
   add_built tmux
   add_built libevent
   add_built ncurses
+  add_prefix $HOME
 esac
