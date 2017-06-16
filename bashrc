@@ -194,25 +194,6 @@ add_built(){
 PATH=$PATH:$HOME/bin
 
 
-add_built Cataclysm-DDA
-add_built openspades
-
-add_built qthreads
-add_built libevent-2.0.22
-add_built libtool
-add_built boost_1_63_0
-add_built ulfm-source
-add_built lua-5.3.4
-add_built sdl2-2.0.5
-
-add_built bold
-add_built edb
-
-add_built gcc-7.1.0
-add_built python-3.6.1
-add_built llvm_and_clang
-
-
 #less options:
 # -R allow ansi escape sequences (color) through unmodified
 # -F quit if less than one screen was displayed
