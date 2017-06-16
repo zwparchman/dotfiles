@@ -124,22 +124,28 @@ mkcd(){
     cd $1
 }
 
+
+#append to a path, but do not have a trailing ':'
+smart_append(){
+    export $1=`echo ${2}:${!1} | sed 's/:$//'`
+}
+
 add_to_include(){
-    export C_INCLUDE_PATH=$1:$C_INCLUDE_PATH
-    export CPATH=$C_INCLUDE_PATH
+    smart_append C_INCLUDE_PATH $1
+    smart_append C_INCLUDE_PATH $1
 }
 
 add_to_lib(){
-    export LD_LIBRARY_PATH=$1:$LD_LIBRARY_PATH
+    smart_append LD_LIBRARY_PATH $1
 }
 
 
 add_to_ld(){
-    export LIBRARY_PATH=$1:$LIBRARY_PATH
+    smart_append LIBRARY_PATH $1
 }
 
 add_to_path(){
-    export PATH=$1:$PATH
+    smart_append PATH $1
 }
 
 add_to_both_lib(){
@@ -184,10 +190,28 @@ add_built(){
     add_prefix $HOME/built/${1}
 }
 
+
+PATH=$PATH:$HOME/bin
+
+
+add_built Cataclysm-DDA
+add_built openspades
+
 add_built qthreads
 add_built libevent-2.0.22
-add_built libtool_2_4_2
+add_built libtool
 add_built boost_1_63_0
+add_built ulfm-source
+add_built lua-5.3.4
+add_built sdl2-2.0.5
+
+add_built bold
+add_built edb
+
+add_built gcc-7.1.0
+add_built python-3.6.1
+add_built llvm_and_clang
+
 
 #less options:
 # -R allow ansi escape sequences (color) through unmodified
@@ -195,9 +219,11 @@ add_built boost_1_63_0
 export LESS="-R -c"
 
 set -o vi
-PATH=$PATH:$HOME/bin
 export EDITOR=vim
 alias E=". ~/bin/E"
 alias rebash=". ~/.bashrc"
+alias opn="xdg-open"
 
-export PYTHONPATH=/home/zack/built/cog/lib/python2.7/site-packages/
+export PYTHONPATH+=/home/zack/built/cog/lib/python2.7/site-packages/
+export PYTHONPATH+=/home/zack/built/bold/lib/python2.7/site-packages/
+export PYTHONPATH+=/home/zack/built/bold

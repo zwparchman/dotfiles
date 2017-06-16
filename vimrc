@@ -107,6 +107,8 @@ set viminfo^=%
 au FileType python map <silent> <leader>b oimport pdb; pdb.set_trace()<esc>
 au FileType python map <silent> <leader>B Oimport pdb; pdb.set_trace()<esc>
 
+au BufNewFile *.py r ~/.vim/python.skel
+
 
 "python PEP8 style (without 80 column limit)
 au BufNewFile,BufRead *.py
