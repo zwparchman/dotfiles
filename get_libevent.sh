@@ -4,13 +4,14 @@ set -o nounset                              # Treat unset variables as an error
 
 PRE=$PREFIX
 
-[ -d tmux ] || git clone ssh://git@github.com/tmux/tmux.git
+[ -d libevent ] || git clone https://github.com/libevent/libevent.git
 
-cd tmux
+cd libevent
 ./autogen.sh
 
 #./configure 
 #./configure --enable-static
+./autogen.sh
 ./configure --prefix=$PRE
 
 make -j20

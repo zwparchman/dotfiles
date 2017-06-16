@@ -1,0 +1,17 @@
+case `hostname` in
+medic)
+    add_built vim
+    add_built ack
+    add_built python3.6
+    add_built llvm-4.0.0
+    add_built m4
+    add_built automake
+    add_built autoconf
+    ;;
+gpu1)
+  add_built boost_1_64_0
+  add_built tmux
+  add_built libevent
+  add_built ncurses
+  add_prefix $HOME
+esac

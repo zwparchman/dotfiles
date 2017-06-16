@@ -224,6 +224,4 @@ alias E=". ~/bin/E"
 alias rebash=". ~/.bashrc"
 alias opn="xdg-open"
 
-export PYTHONPATH+=/home/zack/built/cog/lib/python2.7/site-packages/
-export PYTHONPATH+=/home/zack/built/bold/lib/python2.7/site-packages/
-export PYTHONPATH+=/home/zack/built/bold
+. ~/environ
