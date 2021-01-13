@@ -10,7 +10,7 @@ def getComputerName():
 
 def gitStr():
     try:
-        fin = subprocess.run(['git', 'rev-parse', '--abbrev-ref', 'HEAD' ], stdout=subprocess.PIPE)
+        fin = subprocess.run(['git', 'rev-parse', '--abbrev-ref', 'HEAD' ], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
         if fin.returncode != 0:
             return ""
 
