@@ -16,8 +16,11 @@ gpu1)
   add_prefix $HOME
   ;;
 Hydralisk)
-    add_built Cataclysm-DDA
-    add_built openspades
+    add_built sdr
+
+    add_built gcc-7.1.0
+    add_built python-3.6.1
+    add_built llvm_and_clang
 
     add_built qthreads
     add_built libevent-2.0.22
@@ -26,12 +29,24 @@ Hydralisk)
     add_built ulfm-source
     add_built lua-5.3.4
     add_built sdl2-2.0.5
+    add_built mlt
 
     add_built bold
     add_built edb
+    add_built Cataclysm-DDA
+    add_built openspades
+    add_built obs-studio
+    add_built kdenlive
+    add_built dolphin-emu
 
-    add_built gcc-7.1.0
-    add_built python-3.6.1
-    add_built llvm_and_clang
+    #sdr stuff
+    add_built liquid-dsp
+    add_built cubicsdr
+    add_built csdr
+    add_built soapysdr
+
+    PATH=${HOME}/.local/bin:${PATH}
+
+    smart_append LD_LIBRARY_PATH $HOME/mysrc/zacklib
     ;;
 esac

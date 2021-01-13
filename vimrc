@@ -28,6 +28,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'git@github.com:jeffkreeftmeijer/vim-numbertoggle.git'
 " change surrounding [] () {} of text
 Plugin 'tpope/vim-surround'
+" editor support for the julia language
+Plugin 'JuliaEditorSupport/julia-vim'
 
 
 call vundle#end()
@@ -78,7 +80,6 @@ autocmd InsertLeave * :set relativenumber
 
 set tabstop=4
 set shiftwidth=4
-set colorcolumn=80
 set cino=:0,(0
 
 set backspace=indent,eol,start
